@@ -34,9 +34,10 @@ Criar um banco de dados atualizado da Raaei (Rondonópolis Associação de Atlet
 
 ### Está dentro do escopo
 
-- <item 1> 
-- <item 2> 
-- <item 3>  
+- <item 1> Nome 
+- <item 2> Cpf
+- <item 3>  Data de Nascimento
+- 
 
 ### Está fora do escopo
 
@@ -66,10 +67,11 @@ A equipe deve alterar somente os arquivos relacionados à sua entrega.
 
 O repositório possui **Issues habilitadas**. Cada entrega semanal deve possuir uma Issue correspondente.
 
+
 ### Título sugerido
 
 ```text
-[team-XX][Sprint XX] Nome resumido da entrega
+[team-07][Sprint 01] Modelar e implementar o esquema inicial do banco de dados relacional para gerenciar cliente e dados, garantindo a integridade referencial por meio de Chaves Primárias (PK) e Chaves Estrangeiras (FK), e versionar os scripts no GitHub.
 ```
 
 ### A Issue deve conter
@@ -110,7 +112,7 @@ Para cada entrega semanal, utilize uma branch própria.
 ### Padrão
 
 ```text
-team-XX-sprint-XX
+team-07-sprint-01
 ```
 
 ### Exemplos
