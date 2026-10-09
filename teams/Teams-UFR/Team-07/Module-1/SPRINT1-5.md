@@ -35,12 +35,12 @@ Nesta Sprint 1/5, o foco é exclusivamente o **planejamento do banco de dados**.
 
 **Nome completo:**
 
-> Preencha aqui.
+> Walter Anacleto Salido de Souza
 
 **Nome escolhido para o banco de dados:**
 
-```text
-
+```
+db_raaei
 ```
 
 ---
@@ -73,7 +73,7 @@ Alguns exemplos:
 
 ### Tema escolhido
 
-> Escreva aqui.
+> Gestão de Atletas e Colaboradores da Rondonópolis Associação de Atletismo e Esporte Inclusivo (RAAEI)
 
 ---
 
@@ -90,7 +90,10 @@ A descrição deve responder:
 
 ### Descrição
 
-> Escreva aqui.
+> 1. O sistema gerencia as informações cadastrais, esportivas e institucionais da RAAEI, facilitando o acompanhamento dos atletas, suas categorias competitivas, instituições de ensino e a atuação dos colaboradores e diretoria. 
+> 2. A administração da associação, treinadores e a tesouraria/secretaria para fins de controle interno e prestação de contas.
+> 3. Dados pessoais dos participantes (nome, CPF, data de nascimento, filiação, endereço), vínculo escolar, categorias de atletismo (provas e faixas etárias) e registros de colaboradores/diretoria.
+> 4. Cadastros completos, consultas filtradas por escola ou categoria, atualizações cadastrais e relatórios estatísticos de participação.
 
 ---
 
@@ -100,7 +103,7 @@ Explique qual é o principal objetivo do banco de dados proposto.
 
 ### Objetivo
 
-> Escreva aqui.
+> Centralizar e automatizar o controle interno dos dados dos participantes, atletas e colaboradores do projeto esportivo, garantindo a integridade informacional para suporte a decisões da diretoria e relatórios de desempenho.
 
 ---
 
@@ -112,11 +115,10 @@ Liste as principais funcionalidades ou informações que deverão ser contemplad
 
 ### O banco deverá permitir:
 
-1. 
-2. 
-3. 
-4. 
-5. 
+1. Pesquisa rápida de dados cadastrais de atletas e colaboradores.
+2. Consulta individual de dados específicos (histórico, filiação, endereço e contatos).
+3. Controle e vínculo das escolas em que os atletas estão matriculados.
+4. Controle de categorias de cada atleta por idade e modalidade de atletismo.
 
 ---
 
@@ -129,33 +131,26 @@ Uma entidade representa algo sobre o qual o banco precisa armazenar informaçõe
 Exemplos:
 
 ```text
-Aluno
-Curso
-Matrícula
-Professor
-Disciplina
+Nome
+Cpf
+Data de Nascimento
+Nome da Mãe
+Nome do Pai
+Endereço
+Escola em que esta matriculado
 ```
 
-ou:
-
-```text
-Cliente
-Produto
-Pedido
-Item_Pedido
-Pagamento
-```
 
 ### Entidades do seu banco
 
 | Nº | Entidade | O que representa? |
 |---:|---|---|
-| 1 |  |  |
-| 2 |  |  |
-| 3 |  |  |
-| 4 |  |  |
-| 5 |  |  |
-| 6 |  |  |
+| 1 | Escola | Instituição de ensino onde o atleta estuda, armazenando nome, rede (pública/privada) e localização. |
+| 2 | Categoria | Faixa etária e/ou modalidade do atletismo (ex: Sub-16, Sub-18, Adulto, PCD) na qual o atleta está inscrito. |
+| 3 | Atleta | Participante da associação, contendo dados pessoais (nome, CPF, data de nascimento, filiação, endereço), além de referências para sua Escola e Categoria. |
+| 4 | Colaborador | Membro da diretoria, técnico ou voluntário atuante na associação (incluindo cargos administrativos e técnicos). |
+| 5 | Modalidade Provas | Especifica as provas de atletismo praticadas (ex: lançamento de dardo, arremesso de peso, corridas de velocidade, saltos) associadas ao atleta. |
+| 6 | Registro Atividades | Histórico de participação ou desempenho dos atletas nas atividades e treinamentos da associação. |
 
 > Como referência para esta atividade, planeje **pelo menos 4 tabelas relacionadas**.
 
@@ -169,77 +164,95 @@ Para cada entidade, identifique os principais atributos que deverão ser armazen
 
 **Nome da entidade:**
 
-```text
-
+```
+Escola
 ```
 
 | Atributo | Informação armazenada | Tipo de dado previsto | Obrigatório? |
 |---|---|---|---|
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+
+| id_escola	| Identificador único da escola | (Chave Primária) | Inteiro (INT) | Sim (PK)
+
+| nome_escola | Nome da instituição de ensino | Texto (VARCHAR) | Sim
+
+| tipo_rede | Rede de ensino (Pública ou Privada) | Texto (VARCHAR) | Sim
+
+| bairro | Bairro onde a escola está localizada | Texto (VARCHAR) |Não
+
+| cidade | Município da escola | Texto (VARCHAR) | Sim
 
 ## Entidade 2
 
 **Nome da entidade:**
 
-```text
-
+```
+Categoria
 ```
 
 | Atributo | Informação armazenada | Tipo de dado previsto | Obrigatório? |
 |---|---|---|---|
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+| id_categoria | Identificador único da categoria (Chave Primária) | Inteiro (INT) | Sim (PK) 
+
+| nome_categoria | Nome da categoria (ex: Sub-16, Sub-18, Adulto, PCD) | Texto (VARCHAR) | Sim
+
+| idade_minima | Idade mínima permitida na categoria | Inteiro (INT) | Sim
+
+| idade_maxima | Idade máxima permitida na categoria | Inteiro (INT) | Sim
+
+| genero_categoria | Gênero da categoria (Masculino, Feminino, Misto) | Texto (VARCHAR) | Sim
+
 
 ## Entidade 3
 
 **Nome da entidade:**
 
-```text
-
+```
+Atleta
 ```
 
 | Atributo | Informação armazenada | Tipo de dado previsto | Obrigatório? |
 |---|---|---|---|
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+| id_atleta | Identificador único do atleta (Chave Primária) | Inteiro (INT) | Sim (PK)
+
+| nome_completo | Nome completo do atleta | Texto (VARCHAR) | Sim
+
+| cpf | Número de CPF do atleta | Texto/Char (VARCHAR) | Sim
+
+| data_nascimento | Data de nascimento do atleta | Data (DATE) | Sim
+
+| nome_mae | Nome da mãe do atleta | Texto (VARCHAR)| Não
+
+| nome_pai | Nome do pai do atleta | Texto (VARCHAR) | Não
+
+| endereco | Endereço residencial do atleta | Texto (VARCHAR) | Sim
+
+| id_escola | Referência à escola em que estuda (Chave Estrangeira) | Inteiro (INT) | Sim
+
+| id_categoria | Referência à categoria do atleta (Chave Estrangeira) | Inteiro (INT) | Sim
 
 ## Entidade 4
 
 **Nome da entidade:**
 
-```text
-
+```
+Colaborador
 ```
 
 | Atributo | Informação armazenada | Tipo de dado previsto | Obrigatório? |
 |---|---|---|---|
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+| id_colaborador | Identificador único do colaborador (Chave Primária) | Inteiro (INT) Sim (PK)
 
-## Outras entidades
+| nome_completo | Nome completo do colaborador ou dirigente | Texto (VARCHAR) | Sim
 
-Caso o projeto possua mais de quatro entidades, registre-as abaixo.
+| cpf | Número de CPF do colaborador | Texto/Char (VARCHAR) | Sim
 
-| Entidade | Principais atributos |
-|---|---|
-|  |  |
-|  |  |
-|  |  |
+| cargo_funcao | Cargo ou função exercida (ex: Presidente, Tesoureiro, Treinador) | Texto (VARCHAR) | Sim
 
----
+| telefone | Número de telefone/WhatsApp para contato | Texto (VARCHAR) | Sim
+
+| data_cadastro | Data de início ou registro na associação | Data (DATE) | Sim
+
+
 
 # 8. Chaves primárias
 
@@ -247,17 +260,14 @@ Cada tabela deverá possuir uma forma de identificar unicamente seus registros.
 
 | Entidade/Tabela | Chave primária prevista | Justificativa |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
 
-Considere:
+| Escola | id_escola | Identificador numérico exclusivo que evita duplicidade caso existam escolas com nomes ou bairros semelhantes. Será configurado com AUTO_INCREMENT.
 
-- o valor identifica cada registro de forma única?
-- o valor poderá se repetir?
-- será utilizado um identificador numérico?
-- será necessário `AUTO_INCREMENT`?
+| Categoria | id_categoria | Chave numérica sequencial (AUTO_INCREMENT) para garantir a unicidade de cada categoria e faixa etária cadastrada, facilitando o relacionamento com os atletas.
+
+| Atleta | id_atleta | Identificador numérico sequencial (AUTO_INCREMENT) único para cada atleta. Embora o CPF também seja único, o uso de um ID numérico interno é a melhor prática para chave primária em bancos relacionais.
+
+| Colaborador | id_colaborador | Chave numérica primária (AUTO_INCREMENT) que identifica unicamente cada membro da diretoria, técnico ou colaborador da associação no sistema.
 
 ---
 
@@ -277,12 +287,16 @@ Produto aparece em Item_Pedido
 
 | Entidade A | Relacionamento | Entidade B |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
 
+| Escola | possui | Atleta
+
+| Categoria | agrupa | Atleta
+
+| Colaborador | coordena / gerencia | Atleta
+
+| Colaborador | atua em | Escola
+
+| Atleta | participa de | Categoria
 ---
 
 # 10. Cardinalidade inicial
@@ -297,10 +311,14 @@ N:N  → muitos para muitos
 
 | Relacionamento | Cardinalidade prevista | Justificativa |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+
+|Escola e Atleta | 1:N | Uma escola pode possuir vários atletas matriculados, mas cada atleta individualmente está associado a apenas uma escola principal por vez.
+
+| Categoria e Atleta | 1:N | Uma categoria (ex: Sub-16, Adulto) abrange vários atletas, enquanto cada atleta pertence a uma categoria específica de acordo com sua faixa etária/modalidade.
+
+| Colaborador e Atleta | 1:N| Um colaborador (como um técnico ou treinador) orienta e gerencia vários atletas, e cada atleta é acompanhado por um ou mais responsáveis técnicos/colaboradores da associação.
+
+| Colaborador e Escola | N:N | Um colaborador pode atuar ou representar a associação em múltiplas escolas parceiras, e uma escola pode receber visitas ou atletas orientados por diferentes colaboradores da RAAEI.
 
 ---
 
@@ -308,10 +326,15 @@ N:N  → muitos para muitos
 
 | Tabela | Atributo previsto como FK | Referencia qual tabela? |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+
+| Atleta | id_escola | Escola (id_escola)
+
+| Atleta | id_categoria | Categoria (id_categoria)
+
+| Atleta | id_colaborador | Colaborador (id_colaborador)
+
+| Colaborador_Escola (tabela associativa opcional para N:N) | id_escola e id_colaborador | Escola (id_escola) e Colaborador (id_colaborador)
+
 
 > As `FOREIGN KEY` serão implementadas posteriormente. Nesta Sprint, apenas planeje os relacionamentos.
 
@@ -332,11 +355,17 @@ AUTO_INCREMENT
 
 | Tabela | Atributo | Restrição prevista | Motivo |
 |---|---|---|---|
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+
+| Escola | id_escola | PRIMARY KEY, AUTO_INCREMENT | Identifica unicamente cada escola de forma automática e sequencial.
+
+| Categoria | id_categoria | PRIMARY KEY, AUTO_INCREMENT | Garante a unicidade de cada categoria cadastrada.
+
+| Atleta | id_atleta | PRIMARY KEY, AUTO_INCREMENT | Atribui um identificador exclusivo para cada atleta registrado.
+
+| Atleta | cpf | UNIQUE, NOT NULL | Evita cadastros duplicados do mesmo atleta e garante que o documento seja obrigatório.
+
+| Colaborador | id_colaborador | PRIMARY KEY, AUTO_INCREMENT | Assegura a identificação unívoca de cada membro ou colaborador da associação.
+
 
 ---
 
@@ -344,23 +373,14 @@ AUTO_INCREMENT
 
 Defina pelo menos **5 regras de negócio** para o sistema.
 
-### Exemplos
-
-```text
-Um cliente não pode possuir dois cadastros com o mesmo CPF.
-Um pedido deve estar associado a um cliente existente.
-Um produto não pode possuir preço negativo.
-Uma matrícula deve estar associada a um aluno e a uma disciplina.
-Um empréstimo deve possuir uma data de realização.
-```
 
 ### Regras do seu banco
 
-1. 
-2. 
-3. 
-4. 
-5. 
+1. Um atleta não pode possuir dois cadastros ativos com o mesmo CPF. (Garante a unicidade da pessoa no sistema através do documento de identificação).
+2. Todo atleta cadastrado deve estar obrigatoriamente vinculado a uma escola e a uma categoria válidas. (Assegura que nenhum participante fique sem referências institucionais ou de faixa etária/modalidade).
+3. Um colaborador (como treinador ou dirigente) não pode possuir cargo em branco ou não especificado. (Garante a clareza sobre as funções exercidas na associação).
+4. A data de nascimento do atleta deve resultar em uma idade compatível com a faixa etária permitida na categoria escolhida. (Evita que um atleta seja inscrito em uma categoria inadequada para sua idade).
+5. Nenhum registro principal (Escola, Categoria, Atleta ou Colaborador) pode ser excluído caso existam dependências atreladas a ele. (Garante a integridade referencial e evita órfãos no banco de dados).
 
 ---
 
@@ -368,26 +388,47 @@ Um empréstimo deve possuir uma data de realização.
 
 Faça uma representação textual inicial das tabelas e relacionamentos.
 
-### Exemplo
-
-```text
-CLIENTE
-├── id_cliente (PK)
-├── nome
-└── email
-
-PEDIDO
-├── id_pedido (PK)
-├── id_cliente (FK)
-└── data_pedido
-
-CLIENTE 1 ───── N PEDIDO
-```
 
 ### Esboço do seu banco
 
-```text
-Escreva aqui a estrutura planejada.
+```
+ESCOLA
+├── id_escola (PK)
+├── nome_escola
+├── tipo_rede
+├── bairro
+└── cidade
+
+CATEGORIA
+├── id_categoria (PK)
+├── nome_categoria
+├── idade_minima
+├── idade_maxima
+└── genero_categoria
+
+COLABORADOR
+├── id_colaborador (PK)
+├── nome_completo
+├── cpf
+├── cargo_funcao
+├── telefone
+└── data_cadastro
+
+ATLETA
+├── id_atleta (PK)
+├── nome_completo
+├── cpf
+├── data_nascimento
+├── nome_mae
+├── nome_pai
+├── endereco
+├── id_escola (FK)
+└── id_categoria (FK)
+
+RELACIONAMENTOS:
+ESCOLA      1 ───── N ATLETA
+CATEGORIA   1 ───── N ATLETA
+COLABORADOR 1 ───── N ATLETA  (Orientação / Acompanhamento Técnico)
 ```
 
 ---
@@ -396,10 +437,10 @@ Escreva aqui a estrutura planejada.
 
 Descreva que tipos de registros deverão existir no banco quando ele for populado.
 
-1. 
-2. 
-3. 
-4. 
+1. Escolas parceiras da rede pública e privada de Rondonópolis, contendo nomes de instituições de ensino locais, redes de ensino e bairros para a vinculação correta dos estudantes.
+2. Categorias oficiais de atletismo e faixas etárias (como Sub-14, Sub-16, Sub-18 e Adulto, tanto no masculino quanto no feminino) para a segmentação dos participantes.
+3. Registros cadastrais completos de atletas da RAAEI, com nomes, CPFs válidos, datas de nascimento, filiação, endereços e as respectivas chaves estrangeiras vinculando-os à escola e à categoria correspondentes.
+4. Cadastros da equipe técnica e administrativa (colaboradores), especificando os cargos exercidos na associação (como presidente, tesoureiro e treinadores) junto aos seus contatos e datas de ingresso.
 
 ---
 
@@ -407,35 +448,24 @@ Descreva que tipos de registros deverão existir no banco quando ele for populad
 
 Defina pelo menos **5 perguntas** que futuramente deverão ser respondidas por consultas SQL.
 
-### Exemplos
-
-```text
-Quais clientes estão cadastrados?
-Quais produtos custam mais de R$ 100?
-Quantos pedidos foram realizados por cliente?
-Qual é o valor médio dos produtos?
-Quais categorias possuem mais de 5 produtos?
-```
 
 ### Perguntas do seu projeto
 
-1. 
-2. 
-3. 
-4. 
-5. 
+1. Quais são todos os atletas cadastrados e em quais escolas públicas ou privadas eles estudam? (Consulta com JOIN entre Atleta e Escola)
+2. Quantos atletas estão cadastrados em cada categoria de atletismo? (Consulta com agrupamento GROUP BY e função de agregação COUNT)
+3. Quais atletas pertencem a uma faixa etária ou categoria específica, como o Sub-16? (Consulta com filtro WHERE na tabela de Categoria)
+4. Quais colaboradores exercem funções de treinador ou diretoria na associação? (Consulta com filtro de cargo na tabela Colaborador)
+5. Qual é o quantitativo total de atletas atendidos por cada escola parceira da RAAEI? (Consulta com agregação e relacionamento entre Escola e Atleta)
 
 ---
 
 # 17. Decisões e dúvidas pendentes
 
-- 
-- 
-- 
+Decisão 1: Uso de chaves primárias numéricas auto-incrementais (AUTO_INCREMENT) em todas as tabelas para garantir estabilidade e melhor performance nos relacionamentos.
 
-Caso não existam dúvidas:
+Decisão 2: Armazenamento do CPF com restrição UNIQUE e NOT NULL para assegurar a unicidade e obrigatoriedade do documento dos atletas e colaboradores.
 
-> Nenhuma dúvida pendente nesta Sprint.
+Decisão 3: Estruturação inicial focada nas 4 principais tabelas essenciais (Escola, Categoria, Atleta e Colaborador), mantendo a escalabilidade para as próximas Sprints.
 
 ---
 
